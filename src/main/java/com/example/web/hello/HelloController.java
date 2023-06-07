@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * TodoController
  */
 @RestController
-@RequestMapping(path = "/todo")
+@RequestMapping(path = "/hello")
 public class HelloController {
     /**
      * return "Hello World!"
