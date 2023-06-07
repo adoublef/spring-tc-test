@@ -17,6 +17,8 @@ public class HelloControllerIntegration {
 
     @Test
     public void testHello() throws Exception {
-        mvc.perform(get("/hello/")).andExpect(status().isOk()).andExpect(content().string("Hello World!"));
+        mvc.perform(get("/hello/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Hello World!"));
     }
 }
