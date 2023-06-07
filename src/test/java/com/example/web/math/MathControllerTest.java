@@ -17,11 +17,28 @@ public class MathControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void testCalculateLength() throws Exception {
+    public void validCalculation() throws Exception {
         mvc.perform(post("/math/length")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"x\": 3, \"y\": 4}"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("5.0"));
+    }
+
+    @Test
+    public void invalidValueType() throws Exception {
+        mvc.perform(post("/math/length")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"x\": '3'}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void invalidRequiredField() throws Exception {
+        // why does this not work(?)
+        mvc.perform(post("/math/length")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"y\": 4}"))
+                .andExpect(status().isBadRequest());
     }
 }
