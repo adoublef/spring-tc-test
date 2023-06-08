@@ -1,32 +1,10 @@
 package com.example.web.course;
 
-import org.junit.jupiter.api.Test;
-import org.testcontainers.junit.jupiter.Testcontainers;
-
-import org.testcontainers.junit.jupiter.Container;
+import com.example.web.AbstractIntegration;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.PostgreSQLContainer;
 
-@DataJpaTest
-// @Testcontainers
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Testcontainers
-public class CourseRepositoryTest {
-    @Container
-    public static PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15.0");
-
-    @DynamicPropertySource
-    static void props(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", container::getJdbcUrl);
-        registry.add("spring.datasource.password", container::getPassword);
-        registry.add("spring.datasource.username", container::getUsername);
-    }
-
-
+public class CourseRepositoryTest extends AbstractIntegration {
     @Autowired
     private CourseRepository courseRepository;
 
@@ -36,7 +14,7 @@ public class CourseRepositoryTest {
     }
 
     @Test
-    public void autoGenerateId() {
+    public void addCourse() {
         var course = new Course("CS50 Java", "Mr John");
 
         courseRepository.save(course);

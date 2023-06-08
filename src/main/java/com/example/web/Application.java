@@ -8,13 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class Application {
-
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        createSpringApplication().run(args);
+    }
+
+    public static SpringApplication createSpringApplication() {
+        return new SpringApplication(Application.class);
     }
 
     @GetMapping("/")
     public String hello() {
-        return "Hello World!";
+        return "Hello, world!";
     }
 }
