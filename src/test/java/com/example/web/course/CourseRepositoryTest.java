@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CourseRepositoryTest extends AbstractIntegration {
-
     @Autowired
     private CourseRepository courseRepository;
 
