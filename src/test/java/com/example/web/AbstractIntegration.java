@@ -19,15 +19,14 @@ import java.util.stream.Stream;
 @ContextConfiguration(initializers = AbstractIntegration.Initializer.class)
 public abstract class AbstractIntegration {
     static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15.0");
-        // .withReuse(true);
+        static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14-alpine")
+                .withReuse(true);
 
         public static Map<String, String> getProperties() {
             Startables.deepStart(Stream.of(postgres)).join();
 
             return Map.of(
                     "spring.datasource.url", postgres.getJdbcUrl(),
-                    // "spring.datasource.database", postgres.getDatabaseName(),
                     "spring.datasource.username", postgres.getUsername(),
                     "spring.datasource.password", postgres.getPassword());
         }
