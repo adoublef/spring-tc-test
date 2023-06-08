@@ -1,5 +1,7 @@
 package com.example.web.course;
 
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,11 +9,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "courses", schema = "public")
+@Table(name = "courses", schema = "courses")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private UUID id;
     private String name;
     private String instructor;
 
@@ -23,7 +25,7 @@ public class Course {
         this.instructor = instructor;
     }
 
-    public Course(Long id, String name, String description, String instructor) {
+    public Course(UUID id, String name, String description, String instructor) {
         this.id = id;
         this.name = name;
         this.instructor = instructor;
@@ -34,11 +36,11 @@ public class Course {
         return "Course [id=" + id + ", name=" + name + ", instructor=" + instructor + "]";
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

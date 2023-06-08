@@ -1,5 +1,7 @@
 package com.example.web.course;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +18,7 @@ public class CourseController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Long createCourse(@RequestBody CoursePending course) {
+    public UUID createCourse(@RequestBody CoursePending course) {
         var mapped = new Course(course.name(), course.instructor());
         var saved = courseRepository.save(mapped); // throws error
         return saved.getId();
