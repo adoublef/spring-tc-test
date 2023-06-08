@@ -26,7 +26,4 @@ public class CourseController {
 
     public record CoursePending(String name, String instructor) {
     }
-
-    public record CourseCreated(long id) {
-    }
 }
